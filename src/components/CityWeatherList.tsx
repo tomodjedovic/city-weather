@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { FC,useState } from "react";
 import CityRow from "./City";
 
 export interface City {
-  ime: string;
-  temperatura?: string;
-  vlaznost: string;
+  ime : string;
+  temperatura ? : string;
+  vlaznost : string;
 }
 
 const cityList: City[] = [
@@ -15,21 +15,25 @@ const cityList: City[] = [
   { ime: "Vranje", temperatura: "15 C", vlaznost: "82%" },
 ];
 
+
 const CityWeatherList: FC = () => {
+
+    const [listaGradova,setListaGradova] = useState<City[]>(cityList)
+    
   return (
     <div>
-      <table>
+      <table className="tabela">
         <tr>
           <td> grad </td>
           <td> temoeratura </td>
           <td> vlaznost </td>
         </tr>
-        {cityList.map((city, index) => (
+        {listaGradova.map((grad, index) => (
           <CityRow
             key={index}
-            ime={city.ime}
-            temperatura={city.temperatura}
-            vlaznost={city.vlaznost}
+            ime={grad.ime}
+            temperatura={grad.temperatura}
+            vlaznost={grad.vlaznost}
           />
         ))}
       </table>
